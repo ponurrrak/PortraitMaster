@@ -29,7 +29,7 @@ const Photo = ({ votePhoto, _id, src, title, author, votes}) => {
       </div>
       <div className="photo__info">
         <h2 className="title-small"> { he.decode(title) } </h2>
-        <span className="text-muted"><small>by {author}</small></span>
+        <span className="text-muted"><small>by { he.decode(author) }</small></span>
       </div>
     </article>
   );
