@@ -1,5 +1,6 @@
 const requestIp = require('request-ip');
 const he = require('he');
+const mime = require('mime');
 const Photo = require('../models/photo.model');
 const Voter = require('../models/voter.model');
 
@@ -9,10 +10,10 @@ const validateFile = file => {
   if(!file) {
     return false;
   }
-  const fileName = file.path.split('/').slice(-1)[0];
-  const fileExtension = fileName.split('.').slice(-1)[0];
-  const allowedExtensions = ['png', 'jpg', 'gif'];
+  const fileExtension = mime.getType(file.path).split('/').slice(-1)[0];
+  const allowedExtensions = ['png', 'jpg', 'gif', 'jpeg'];
   const isExtAllowed = allowedExtensions.find(ext => ext === fileExtension);
+  const fileName = file.path.split('/').slice(-1)[0];
   return isExtAllowed && fileName;
 };
 
